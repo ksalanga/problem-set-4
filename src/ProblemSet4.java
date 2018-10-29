@@ -21,6 +21,10 @@
 public class ProblemSet4 {
 	
 	public static void main(String[] args) {
+		ProblemSet4 ps = new ProblemSet4();
+		
+		System.out.println(ps.surroundMe("<<>>1", "abc"));
+		System.out.println(ps.endsMeet("basketball", 0));
 		
 	}
 	
@@ -38,7 +42,21 @@ public class ProblemSet4 {
 	 * @return a String constructed from @in and @out of the format AAXYZBB
 	 */
 	
-	// your method signature here
+	public String surroundMe(String out, String in) {
+		int outLength = out.length();
+		int inLength = in.length();
+		
+		if (outLength == 4 && inLength == 3) {
+			String NewString = out.substring(0, 1) + out.substring(1, 2) + in.substring(0, 3) + out.substring(2, 3) + out.substring(3, 4);
+			
+			return NewString;
+		}
+		else {
+			return null;
+		}
+		
+		
+	}
 	
 	/**
 	 * @endsMeet is a public method that accepts a String and an integer as input, and
@@ -54,7 +72,18 @@ public class ProblemSet4 {
 	 * @return a String constructed from the first @n and last @n characters of @str
 	 */
 	
-	// your method signature here
+	public String endsMeet(String str, int n) {
+		int strLength = str.length();
+		
+		if ((strLength >= 1 && strLength <= 10) && (n > 0 && n <= strLength )) {
+			String NewString = str.substring(0, n) + str.substring(strLength - n);
+			
+			return NewString;
+		}
+		else {
+			return null;
+		}
+	}
 	
 	/**
 	 * @middleMan is a public method that accepts a single String as input, and
@@ -69,7 +98,9 @@ public class ProblemSet4 {
 	 * @return a 3-character String constructed from the middle 3 characters of @str
 	 */
 	
-	// your method signature here
+	public String middleMan(String str) {
+		
+	}
 	
 	/**
 	 * @doubleVision is a public method that accepts a single String as input, and
