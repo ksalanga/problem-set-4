@@ -45,10 +45,9 @@ public class ProblemSet4 {
 	public String surroundMe(String out, String in) {
 		int outLength = out.length();
 		int inLength = in.length();
+		String NewString = out.substring(0, 1) + out.substring(1, 2) + in.substring(0, 3) + out.substring(2, 3) + out.substring(3, 4);
 		
 		if (outLength == 4 && inLength == 3) {
-			String NewString = out.substring(0, 1) + out.substring(1, 2) + in.substring(0, 3) + out.substring(2, 3) + out.substring(3, 4);
-			
 			return NewString;
 		}
 		else {
@@ -74,10 +73,9 @@ public class ProblemSet4 {
 	
 	public String endsMeet(String str, int n) {
 		int strLength = str.length();
+		String NewString = str.substring(0, n) + str.substring(strLength - n);
 		
 		if ((strLength >= 1 && strLength <= 10) && (n > 0 && n <= strLength )) {
-			String NewString = str.substring(0, n) + str.substring(strLength - n);
-			
 			return NewString;
 		}
 		else {
@@ -99,7 +97,15 @@ public class ProblemSet4 {
 	 */
 	
 	public String middleMan(String str) {
+		int strLength = str.length();
+		String middle = str.substring()
 		
+		if (strlength % 2 != 0) {
+			return middle;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	/**
