@@ -25,6 +25,7 @@ public class ProblemSet4 {
 		
 		System.out.println(ps.surroundMe("<<>>1", "abc"));
 		System.out.println(ps.endsMeet("basketball", 0));
+		System.out.println(ps.middleMan("Candya"));
 		
 	}
 	
@@ -98,9 +99,9 @@ public class ProblemSet4 {
 	
 	public String middleMan(String str) {
 		int strLength = str.length();
-		String middle = str.substring()
+		String middle = str.substring(strLength / 2 - 1, strLength / 2 + 2);
 		
-		if (strlength % 2 != 0) {
+		if (strLength % 2 != 0) {
 			return middle;
 		}
 		else {
