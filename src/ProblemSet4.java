@@ -23,10 +23,11 @@ public class ProblemSet4 {
 	public static void main(String[] args) {
 		ProblemSet4 ps = new ProblemSet4();
 		
-		System.out.println(ps.surroundMe("<<>>1", "abc"));
-		System.out.println(ps.endsMeet("basketball", 0));
-		System.out.println(ps.middleMan("Candya"));
-		
+		System.out.println(ps.surroundMe("<<>>", "joy"));
+		System.out.println(ps.endsMeet("joy", 1));
+		System.out.println(ps.middleMan("Candy"));
+		System.out.println(ps.doubleVision("a"));
+		System.out.println(ps.centered("candy", "and"));
 	}
 	
 	/**
@@ -44,18 +45,21 @@ public class ProblemSet4 {
 	 */
 	
 	public String surroundMe(String out, String in) {
-		int outLength = out.length();
-		int inLength = in.length();
-		String NewString = out.substring(0, 1) + out.substring(1, 2) + in.substring(0, 3) + out.substring(2, 3) + out.substring(3, 4);
+		if(out != null && in != null) {
+			int outLength = out.length();
+			int inLength = in.length();
+			String NewString = out.substring(0, 1) + out.substring(1, 2) + in.substring(0, 3) + out.substring(2, 3) + out.substring(3, 4);
 		
-		if (outLength == 4 && inLength == 3) {
-			return NewString;
+			if (outLength == 4 && inLength == 3) {
+				return NewString;
+			}
+			else {
+				return null;
+			}
 		}
 		else {
 			return null;
 		}
-		
-		
 	}
 	
 	/**
@@ -73,11 +77,16 @@ public class ProblemSet4 {
 	 */
 	
 	public String endsMeet(String str, int n) {
-		int strLength = str.length();
-		String NewString = str.substring(0, n) + str.substring(strLength - n);
+		if(str != null) {
+			int strLength = str.length();
+			String NewString = str.substring(0, n) + str.substring(strLength - n);
 		
-		if ((strLength >= 1 && strLength <= 10) && (n > 0 && n <= strLength )) {
-			return NewString;
+			if ((strLength >= 1 && strLength <= 10) && (n > 0 && n <= strLength )) {
+				return NewString;
+			}
+			else {
+				return null;
+			}
 		}
 		else {
 			return null;
@@ -98,11 +107,16 @@ public class ProblemSet4 {
 	 */
 	
 	public String middleMan(String str) {
-		int strLength = str.length();
-		String middle = str.substring(strLength / 2 - 1, strLength / 2 + 2);
-		
-		if (strLength % 2 != 0) {
-			return middle;
+		if(str != null) {
+			int strLength = str.length();
+			String middle = str.substring(strLength / 2 - 1, strLength / 2 + 2);
+	
+			if (strLength % 2 != 0) {
+				return middle;
+			}
+			else {
+				return null;
+			}
 		}
 		else {
 			return null;
@@ -122,7 +136,26 @@ public class ProblemSet4 {
 	 * @return a String where each character in @str is duplicated in the format AABBCC
 	 */
 	
-	// your method signature here
+	public String doubleVision(String str) {
+		if (str != null) {
+			int strLength = str.length();
+			String vision = "";
+			
+			for(int i = 0; i < strLength; i++) {
+				vision += (str.substring(i, i + 1) + str.substring(i, i + 1));
+				}
+			
+			if(strLength >= 1) {
+				return vision;
+			}
+			else {
+				return null;
+			}
+		}
+		else {
+			return null;
+		}
+	}
 	
 	/**
 	 * @centered is a public method that accepts a single String as input, and
@@ -139,7 +172,17 @@ public class ProblemSet4 {
 	 * @return true if @target is in the middle of @str and false if it is not
 	 */
 	
-	// your method signature here
+	public Boolean centered(String str, String target) {
+		int strLength = str.length();
+		String middle = str.substring(strLength / 2 - 1, strLength / 2 + 2);
+		
+		if(middle == target) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	/**
 	 * @upOrDown is a public method that accepts a decimal value and a character as
@@ -155,7 +198,17 @@ public class ProblemSet4 {
 	 * @return the result of the operation as an @int
 	 */
 	
-	// your method signature here
+	public Integer upOrDown(double n, char val) {
+		switch(val) {
+		case '+':
+			int number = (int)n / 1 + 1;
+			return number;
+		case '-':
+			int number1 = (int)n / 1;
+			return number1;
+			
+		}
+	}
 	
 	/**
 	 * @countMe is a public method that accepts a String and a character as input,
