@@ -254,8 +254,11 @@ public class ProblemSet4 {
 	 */
 	
 	public Boolean isNotEqual(String str) {
-		//for loop checking through 2 letter words
-		//for loop checking through 3 letter words
+		for(int i = 0; i < str.length(); i++) {
+			if(str.substring(i, i + 2).equals("is") {
+		}
+		for(int i = 0; i < str.length(); i++) {
+		}
 	}
 	
 	/**
