@@ -28,6 +28,9 @@ public class ProblemSet4 {
 		System.out.println(ps.middleMan("Candy"));
 		System.out.println(ps.doubleVision("a"));
 		System.out.println(ps.centered("candy", "and"));
+		System.out.println(ps.upOrDown(12, 'c'));
+		System.out.println(ps.countMe("one more batch of sample words", 'h'));
+		
 	}
 	
 	/**
@@ -46,12 +49,8 @@ public class ProblemSet4 {
 	
 	public String surroundMe(String out, String in) {
 		if(out != null && in != null) {
-			int outLength = out.length();
-			int inLength = in.length();
-			String NewString = out.substring(0, 1) + out.substring(1, 2) + in.substring(0, 3) + out.substring(2, 3) + out.substring(3, 4);
-		
-			if (outLength == 4 && inLength == 3) {
-				return NewString;
+			if (out.length() == 4 && in.length() == 3) {
+				return out.substring(0, 1) + out.substring(1, 2) + in.substring(0, 3) + out.substring(2, 3) + out.substring(3, 4);
 			}
 			else {
 				return null;
@@ -78,11 +77,8 @@ public class ProblemSet4 {
 	
 	public String endsMeet(String str, int n) {
 		if(str != null) {
-			int strLength = str.length();
-			String NewString = str.substring(0, n) + str.substring(strLength - n);
-		
-			if ((strLength >= 1 && strLength <= 10) && (n > 0 && n <= strLength )) {
-				return NewString;
+			if ((str.length() >= 1 && str.length() <= 10) && (n > 0 && n <= str.length())) {
+				return str.substring(0, n) + str.substring(str.length() - n);
 			}
 			else {
 				return null;
@@ -108,11 +104,8 @@ public class ProblemSet4 {
 	
 	public String middleMan(String str) {
 		if(str != null) {
-			int strLength = str.length();
-			String middle = str.substring(strLength / 2 - 1, strLength / 2 + 2);
-	
-			if (strLength % 2 != 0) {
-				return middle;
+			if (str.length() % 2 != 0) {
+				return str.substring(str.length() / 2 - 1, str.length() / 2 + 2);
 			}
 			else {
 				return null;
@@ -138,14 +131,13 @@ public class ProblemSet4 {
 	
 	public String doubleVision(String str) {
 		if (str != null) {
-			int strLength = str.length();
 			String vision = "";
 			
-			for(int i = 0; i < strLength; i++) {
+			for(int i = 0; i < str.length(); i++) {
 				vision += (str.substring(i, i + 1) + str.substring(i, i + 1));
 				}
 			
-			if(strLength >= 1) {
+			if(str.length() >= 1) {
 				return vision;
 			}
 			else {
@@ -173,10 +165,9 @@ public class ProblemSet4 {
 	 */
 	
 	public Boolean centered(String str, String target) {
-		int strLength = str.length();
-		String middle = str.substring(strLength / 2 - 1, strLength / 2 + 2);
+		String middle = str.substring(str.length() / 2 - 1, str.length() / 2 + 2);
 		
-		if(middle == target) {
+		if(middle.equals(target)) {
 			return true;
 		}
 		else {
@@ -198,15 +189,21 @@ public class ProblemSet4 {
 	 * @return the result of the operation as an @int
 	 */
 	
-	public Integer upOrDown(double n, char val) {
-		switch(val) {
-		case '+':
-			int number = (int)n / 1 + 1;
+	public Integer upOrDown(double n, char c) {
+		int number;
+		
+		switch(c) {
+		case 'r':
+			number = (int)Math.round(n);
 			return number;
-		case '-':
-			int number1 = (int)n / 1;
-			return number1;
-			
+		case 'f':
+			number = (int)Math.floor(n);
+			return number;
+		case 'c':
+			number = (int)Math.ceil(n);
+			return number;
+		default:
+			return -1;
 		}
 	}
 	
@@ -226,7 +223,22 @@ public class ProblemSet4 {
 	 * @return the number of words in @text that end with @end
 	 */
 	
-	// your method signature here
+	public Integer countMe(String str, char end) {
+		if(str != null && Character.isLetter(end)) {
+			int count = 0;
+		
+			for(int i = 0; i < str.length(); i++) {
+				if(str.charAt(i) == end && str.charAt(i + 1) == ' ') {
+					count++;
+				}
+			}
+			
+			return count;
+		}
+		else {
+			return -1;
+		}
+	}
 	
 	/**
 	 * @isNotEqual is a public method that accepts a String as input, and
@@ -241,7 +253,10 @@ public class ProblemSet4 {
 	 * @return true if the appearances of is == the appearances of not; false otherwise
 	 */
 	
-	// your method signature here
+	public Boolean isNotEqual(String str) {
+		//for loop checking through 2 letter words
+		//for loop checking through 3 letter words
+	}
 	
 	/**
 	 * @triplets is a public method that accepts a single String as input, and
