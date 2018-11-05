@@ -26,11 +26,13 @@ public class ProblemSet4 {
 		System.out.println(ps.surroundMe("<<>>", "joy"));
 		System.out.println(ps.endsMeet("joy", 1));
 		System.out.println(ps.middleMan("Candy"));
-		System.out.println(ps.doubleVision("a"));
+		System.out.println(ps.doubleVision("asdaa"));
 		System.out.println(ps.centered("candy", "and"));
 		System.out.println(ps.upOrDown(12, 'c'));
-		System.out.println(ps.countMe("one more batch of sample words", 'h'));
-		
+		System.out.println(ps.countMe("and some more sample words", '+'));
+		System.out.println(ps.isNotEqual("is not is not is"));
+		System.out.println(ps.triplets("abbbccccd"));
+		System.out.println(ps.addMe("a123b456c789", true));
 	}
 	
 	/**
@@ -48,9 +50,9 @@ public class ProblemSet4 {
 	 */
 	
 	public String surroundMe(String out, String in) {
-		if(out != null && in != null) {
+		if (out != null && in != null) {
 			if (out.length() == 4 && in.length() == 3) {
-				return out.substring(0, 1) + out.substring(1, 2) + in.substring(0, 3) + out.substring(2, 3) + out.substring(3, 4);
+				return out.substring(0, 2) + in + out.substring(2);
 			}
 			else {
 				return null;
@@ -70,13 +72,13 @@ public class ProblemSet4 {
 	 * specifcations are not met.
 	 * 
 	 * @param str - a String whose length falls in the range [1, 10]
-	 * @param n - an integer no greater than the length of @str
+	 * @param n - an integer no==================== greater than the length of @str
 	 * 
 	 * @return a String constructed from the first @n and last @n characters of @str
 	 */
 	
 	public String endsMeet(String str, int n) {
-		if(str != null) {
+		if (str != null) {
 			if ((str.length() >= 1 && str.length() <= 10) && (n > 0 && n <= str.length())) {
 				return str.substring(0, n) + str.substring(str.length() - n);
 			}
@@ -103,7 +105,7 @@ public class ProblemSet4 {
 	 */
 	
 	public String middleMan(String str) {
-		if(str != null) {
+		if (str != null) {
 			if (str.length() % 2 != 0) {
 				return str.substring(str.length() / 2 - 1, str.length() / 2 + 2);
 			}
@@ -131,13 +133,13 @@ public class ProblemSet4 {
 	
 	public String doubleVision(String str) {
 		if (str != null) {
-			String vision = "";
+			String vision = new String();
 			
-			for(int i = 0; i < str.length(); i++) {
+			for (int i = 0; i < str.length(); i++) {
 				vision += (str.substring(i, i + 1) + str.substring(i, i + 1));
 				}
 			
-			if(str.length() >= 1) {
+			if (str.length() >= 1) {
 				return vision;
 			}
 			else {
@@ -165,13 +167,17 @@ public class ProblemSet4 {
 	 */
 	
 	public Boolean centered(String str, String target) {
-		String middle = str.substring(str.length() / 2 - 1, str.length() / 2 + 2);
+		if (target == null || str == null || target.length() != 3) {
+			return false;
+		}
 		
-		if(middle.equals(target)) {
-			return true;
+		double middle = str.length() / 2.0;
+		
+		if (middle == (int) middle) {
+			return str.substring((int) middle - 2, (int) middle + 1).equals(target) || str.substring( (int) middle - 1, (int) middle + 2).equals(target);
 		}
 		else {
-			return false;
+			return str.substring((int) middle - 1, (int) middle + 2).equals(target);
 		}
 	}
 	
@@ -192,19 +198,22 @@ public class ProblemSet4 {
 	public Integer upOrDown(double n, char c) {
 		int number;
 		
-		switch(c) {
+		switch (c) {
 		case 'r':
 			number = (int)Math.round(n);
-			return number;
+			break;
 		case 'f':
 			number = (int)Math.floor(n);
-			return number;
+			break;
 		case 'c':
 			number = (int)Math.ceil(n);
-			return number;
+			break;
 		default:
-			return -1;
+			number = -1;
+			break;
 		}
+		
+		return number;
 	}
 	
 	/**
@@ -223,14 +232,28 @@ public class ProblemSet4 {
 	 * @return the number of words in @text that end with @end
 	 */
 	
-	public Integer countMe(String str, char end) {
-		if(str != null && Character.isLetter(end)) {
+	public Integer countMe(String text, char end) {
+		if (text != null && Character.isLetter(end)) {
 			int count = 0;
-		
-			for(int i = 0; i < str.length(); i++) {
-				if(str.charAt(i) == end && str.charAt(i + 1) == ' ') {
+			String endCheck;
+			
+			for (int i = 0; i < text.length() - 1; i++) {
+				if (!Character.isAlphabetic(text.charAt(i)) && !Character.isWhitespace(text.charAt(i))) {
+					return -1;
+				}
+
+				endCheck = text.substring(i, i+2);
+				
+				if (Character.isWhitespace(endCheck.charAt(1)) && endCheck.charAt(0) == end) {
 					count++;
 				}
+			}
+
+			if (!Character.isAlphabetic(text.charAt(text.length() - 1)) && !Character.isWhitespace(text.charAt(text.length() - 1))) {
+				return -1;
+			}
+			else if (text.charAt(text.length() - 1) == end) {
+				count++;
 			}
 			
 			return count;
@@ -238,6 +261,7 @@ public class ProblemSet4 {
 		else {
 			return -1;
 		}
+		
 	}
 	
 	/**
@@ -254,10 +278,33 @@ public class ProblemSet4 {
 	 */
 	
 	public Boolean isNotEqual(String str) {
-		for(int i = 0; i < str.length(); i++) {
-			if(str.substring(i, i + 2).equals("is") {
+		int isCheck = 0;
+		int notCheck = 0; 
+		
+		if (str == null) {
+			return false;
 		}
-		for(int i = 0; i < str.length(); i++) {
+		
+		if (str.length() == 0) {
+			return false;
+		}
+		
+		for (int i = 0; i < str.length() - 1; i++) {
+			if (str.substring(i, i + 2).equals("is")) {
+				isCheck++;
+			}
+			else if (i < str.length() - 2) {
+				if (str.substring(i, i + 3).equals("not")) {
+					notCheck++;
+				}
+			}
+		}
+		
+		if (isCheck == notCheck) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	
@@ -275,7 +322,25 @@ public class ProblemSet4 {
 	 * @return the number of triplets in @str
 	 */
 	
-	// your method signature here
+	public int triplets(String str) {
+		if (str == null) {
+			return -1;
+		}
+		
+		int count = 0;
+		
+		for (int i = 0; i < str.length() - 2; i++) {
+			if (!Character.isAlphabetic(str.charAt(i))) {
+				return -1;
+			}
+			
+			if (str.charAt(i) == str.charAt(i + 1) && str.charAt(i) == str.charAt(i + 2)) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
 	
 	/**
 	 * @addMe is a public method that accepts a String and a boolean as input, and
@@ -292,5 +357,40 @@ public class ProblemSet4 {
 	 * @return the sum of the digits or numbers as specified by @digits
 	 */
 	
-	// your method signature here
+	public int addMe(String str, boolean digits) {
+		int sum = 0;
+		
+		if (str == null) {
+			return -1;
+		}
+		
+		if (digits) {
+			for (int i = 0; i < str.length(); i++) {
+				if (Character.isDigit(str.charAt(i))) {
+					sum += Character.getNumericValue(str.charAt(i));
+				}
+			}
+		}
+		else { 
+			int check = 0;
+			
+			for (int i = 0; i < str.length(); i++) {
+				if (Character.isDigit(str.charAt(i))) {
+					check *= 10;
+					check += Character.getNumericValue(str.charAt(i));;
+				}
+				else if (!Character.isAlphabetic(str.charAt(i))) {
+					return -1;
+				}
+				else {
+					sum += check;
+					check = 0;
+				}
+			}
+			
+			sum += check;
+		}
+		
+		return sum;
+	}
 }
